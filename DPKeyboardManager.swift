@@ -6,21 +6,22 @@
 //  Copyright © 2017 D.Priore. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
-class DPKeyboardManager {
+open class DPKeyboardManager {
     
     private weak var containerView: UIView?
     
-    var currentView: UIView?
-    var keyboardRect: CGRect = CGRect.zero
-    var keyboardPadding: CGFloat = 10.0
+    @objc open var currentView: UIView?
+    @objc open var keyboardRect: CGRect = CGRect.zero
+    @objc open var keyboardPadding: CGFloat = 10.0
     
-    init() {
+    @objc public init() {
         // NOP
     }
     
-    init(_ view: UIView) {
+    @objc public init(_ view: UIView) {
         enableKeybaordEvents(view)
     }
     
@@ -28,7 +29,7 @@ class DPKeyboardManager {
         disableKeyboardEvents()
     }
     
-    func enableKeybaordEvents(_ view: UIView) {
+    @objc open func enableKeybaordEvents(_ view: UIView) {
         
         containerView = view
         
@@ -39,7 +40,7 @@ class DPKeyboardManager {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func disableKeyboardEvents() {
+    @objc open func disableKeyboardEvents() {
         
         NotificationCenter.default.removeObserver(self)
     }
