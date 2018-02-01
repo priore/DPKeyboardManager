@@ -19,18 +19,34 @@ open class DPKeyboardManager {
     @objc open var currentView: UIView?
     @objc open var keyboardRect: CGRect = CGRect.zero
     @objc open var keyboardPadding: CGFloat = 10.0
-
+    @objc open var isEmbeddedViewController: Bool = false
     
     @objc public init() {
         // NOP
     }
     
-    @objc public init(_ view: UIView) {
-        enableKeybaordEvents(view)
+    @objc public init(_ viewController: UIViewController) {
+        loadKeyboardEvents(viewController)
+        enableKeybaordEvents(viewController.view)
     }
     
     deinit {
         disableKeyboardEvents()
+    }
+    
+    @objc open func loadKeyboardEvents(_ viewController: UIViewController) {
+        
+        // check for embedded viewcontrollers
+        if let parentVC = viewController.view.superview?.___parentViewController ?? viewController.parent?.view.superview?.___parentViewController {
+            if !(parentVC is UITabBarController), !parentVC.childViewControllers.contains(viewController) {
+                isEmbeddedViewController = true
+                
+                viewController.willMove(toParentViewController: parentVC)
+                viewController.beginAppearanceTransition(true, animated: true)
+                viewController.didMove(toParentViewController: parentVC)
+                viewController.endAppearanceTransition()
+            }
+        }
     }
     
     @objc open func enableKeybaordEvents(_ view: UIView) {
@@ -99,11 +115,12 @@ open class DPKeyboardManager {
             }
         }
     }
+    
 }
 
 extension UITableView {
     
-    open override var contentOffset: CGPoint {
+     @objc open override var contentOffset: CGPoint {
         get {
             return super.contentOffset
         }
@@ -114,6 +131,21 @@ extension UITableView {
             }
         }
     }
-    
-    
 }
+
+extension UIView {
+    
+    @objc open var ___parentViewController: UIViewController? {
+        
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder!.next
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+        }
+        
+        return nil
+    }
+}
+
