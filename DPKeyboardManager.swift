@@ -27,7 +27,6 @@ open class DPKeyboardManager {
     
     @objc public init(_ viewController: UIViewController) {
         loadKeyboardEvents(viewController)
-        enableKeybaordEvents(viewController.view)
     }
     
     deinit {
@@ -35,7 +34,9 @@ open class DPKeyboardManager {
     }
     
     @objc open func loadKeyboardEvents(_ viewController: UIViewController) {
-        
+
+        containerView = viewController.view
+
         // check for embedded viewcontrollers
         if let parentVC = viewController.view.superview?.___parentViewController ?? viewController.parent?.view.superview?.___parentViewController {
             if !(parentVC is UITabBarController), !parentVC.childViewControllers.contains(viewController) {
@@ -49,9 +50,7 @@ open class DPKeyboardManager {
         }
     }
     
-    @objc open func enableKeybaordEvents(_ view: UIView) {
-        
-        containerView = view
+    @objc open func enableKeybaordEvents() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(textDidBeginEditing), name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(textDidBeginEditing), name: NSNotification.Name.UITextViewTextDidBeginEditing, object: nil)
