@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name             = "DPKeyboardManager"
-  s.version          = "1.0.1"
+  s.version          = "1.1.0"
   s.summary          = "Auto slide the view when keyboard appears."
   
   s.homepage         = "https://github.com/priore/DPKeyboardManager"
