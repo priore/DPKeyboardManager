@@ -69,7 +69,7 @@ open class DPKeyboardManager {
     
     @objc private func keyboardWillShow(notification:NSNotification) {
         
-        DPKeyboardManager.disableTableViewAutoscoll = true
+        DPKeyboardManager.disableTableViewAutoscoll = ((currentView as? UITextField) ?? (currentView as? UITextView))?.inputView == nil
         
         let userInfo = notification.userInfo!
         let keyboardFrame:NSValue = userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
