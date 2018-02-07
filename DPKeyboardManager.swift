@@ -56,6 +56,7 @@ open class DPKeyboardManager {
         NotificationCenter.default.addObserver(self, selector: #selector(textDidBeginEditing), name: NSNotification.Name.UITextViewTextDidBeginEditing, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
@@ -80,6 +81,10 @@ open class DPKeyboardManager {
         translateTextField()
     }
     
+    @objc private func keyboardDidShow(notification:NSNotification) {
+        DPKeyboardManager.disableTableViewAutoscoll = false
+    }
+
     @objc private func keyboardWillHide(notification:NSNotification) {
 
         DispatchQueue.main.async {
@@ -131,6 +136,16 @@ extension UITableView {
             }
         }
     }
+}
+
+extension UITableViewController {
+    
+    @objc open override func viewWillAppear(_ animated: Bool) {
+        if !DPKeyboardManager.disableTableViewAutoscoll {
+            super.viewWillAppear(animated)
+        }
+    }
+    
 }
 
 extension UIView {
