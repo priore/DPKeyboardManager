@@ -125,7 +125,8 @@ extension UITableView {
         }
         
         set {
-            if !DPKeyboardManager.disableTableViewAutoscoll {
+            let isPicker = NSStringFromClass(self.classForCoder).contains("Picker")
+            if !DPKeyboardManager.disableTableViewAutoscoll || isPicker {
                 super.contentOffset = newValue
             }
         }
