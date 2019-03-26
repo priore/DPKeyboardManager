@@ -39,12 +39,12 @@ open class DPKeyboardManager {
 
         // check for embedded viewcontrollers
         if let parentVC = viewController.view.superview?.___parentViewController ?? viewController.parent?.view.superview?.___parentViewController {
-            if !(parentVC is UITabBarController), !parentVC.childViewControllers.contains(viewController) {
+            if !(parentVC is UITabBarController), !parentVC.children.contains(viewController) {
                 isEmbeddedViewController = true
                 
-                viewController.willMove(toParentViewController: parentVC)
+                viewController.willMove(toParent: parentVC)
                 viewController.beginAppearanceTransition(true, animated: true)
-                viewController.didMove(toParentViewController: parentVC)
+                viewController.didMove(toParent: parentVC)
                 viewController.endAppearanceTransition()
             }
         }
@@ -52,13 +52,14 @@ open class DPKeyboardManager {
     
     @objc open func enableKeybaordEvents() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidBeginEditing), name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidBeginEditing), name: NSNotification.Name.UITextViewTextDidBeginEditing, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidBeginEditing), name:
+            UITextField.textDidBeginEditingNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidBeginEditing), name: UITextView.textDidBeginEditingNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide), name: UIResponder.keyboardDidHideNotification, object: nil)
     }
     
     @objc open func disableKeyboardEvents() {
@@ -73,8 +74,8 @@ open class DPKeyboardManager {
         DPKeyboardManager.disableTableViewAutoscoll = ((currentView as? UITextField) ?? (currentView as? UITextView))?.inputView == nil
         
         let userInfo = notification.userInfo!
-        let keyboardFrame:NSValue = userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
-        let keyboardAnimation: NSNumber = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+        let keyboardFrame:NSValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardAnimation: NSNumber = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber
         self.keyboardRect = keyboardFrame.cgRectValue
         self.keyboardAnimationDuration = keyboardAnimation.doubleValue
         
