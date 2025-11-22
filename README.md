@@ -37,3 +37,13 @@ class DPBaseViewController: UIViewController {
 ```
 
 **that's all !!**
+
+## Support Development
+If this project has been helpful to you, please consider making a small donation. Your support is crucial for funding new features, covering hosting costs, or simply buying me a coffee! Every contribution, big or small, is highly appreciated.
+
+Scan the code below with your cryptocurrency wallet or copy the address.
+
+|Donate with BTC (Bitcoin)
+|:------------:|
+|![](https://www.prioregroup.com/images/priore_btc_segwit_binance.jpg)
+|`BTC Address (SegWit) : bc1q6rjOuuwu9k2fvs5n5elmqy9v4ljazhexejykjm`
