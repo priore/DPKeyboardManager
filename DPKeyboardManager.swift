@@ -2,8 +2,8 @@
 //  DPKeyboardManager.swift
 //  DPKeyboardManager
 //
-//  Created by Danilo Priore on 28/08/17.
-//  Copyright © 2017 D.Priore. All rights reserved.
+//  Created by Priore on 28/08/17.
+//  Copyright © 2017 Priore. All rights reserved.
 //
 
 import UIKit

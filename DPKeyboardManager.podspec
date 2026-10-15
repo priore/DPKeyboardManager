@@ -6,9 +6,8 @@ Pod::Spec.new do |s|
   
   s.homepage         = "https://github.com/priore/DPKeyboardManager"
   s.license          = 'MIT'
-  s.authors 		 = { 'Danilo Priore' => 'support@prioregroup.com' }
+  s.authors 		 = { 'Priore' => 'priore@users.noreply.github.com' }
   s.source           = { :git => "https://github.com/priore/DPKeyboardManager.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/danilopriore'
 
   s.platform     = :ios
   s.ios.deployment_target = '9.0'

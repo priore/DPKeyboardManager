@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  DPKeyboardManager App
 //
-//  Created by Danilo Priore on 26/03/2019.
-//  Copyright © 2019 Danilo Priore. All rights reserved.
+//  Created by Priore on 26/03/2019.
+//  Copyright © 2019 Priore. All rights reserved.
 //
 
 import UIKit

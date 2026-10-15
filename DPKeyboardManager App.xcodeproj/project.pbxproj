@@ -95,7 +95,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = "Danilo Priore";
+				ORGANIZATIONNAME = "Priore";
 				TargetAttributes = {
 					9F881531224A35B500CF506B = {
 						CreatedOnToolsVersion = 10.2;
@@ -292,7 +292,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prioregroup.DPKeyboardManager-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.priore.DPKeyboardManager-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -309,7 +309,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.prioregroup.DPKeyboardManager-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.priore.DPKeyboardManager-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
